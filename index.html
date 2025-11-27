@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Scope - App Support</title>
+    <title>Daily Scope - Support</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -13,6 +13,27 @@
             margin: 0 auto;
             padding: 20px;
             background-color: #f9f9f9;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid #007AFF;
+            color: #007AFF;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover { background-color: #e6f0ff; }
+        .lang-btn.active {
+            background: #007AFF;
+            color: white;
         }
         header {
             text-align: center;
@@ -28,39 +49,98 @@
             border-left: 4px solid #007AFF;
             padding: 20px;
             margin: 20px 0;
+            border-radius: 4px;
         }
         a { color: #007AFF; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
         footer { text-align: center; margin-top: 50px; font-size: 0.8em; color: #666; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Daily Scope</h1>
-        <p class="subtitle">News • Markets • Data</p>
-    </header>
+    <div class="lang-switch">
+        <button class="lang-btn" id="btn-tr" onclick="setLanguage('tr')">TR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
 
-    <div class="container">
-        <h2>App Support</h2>
-        <p>Thank you for using Daily Scope. We are dedicated to providing you with a seamless experience for tracking breaking news, financial markets, and weather data.</p>
+    <div id="content-en">
+        <header>
+            <h1>Daily Scope</h1>
+            <p class="subtitle">News • Markets • Data</p>
+        </header>
 
-        <h3>Frequently Asked Questions (FAQ)</h3>
-        <ul>
-            <li><strong>News feed not refreshing?</strong> Please check your internet connection and try pulling down on the screen to refresh the latest articles.</li>
-            <li><strong>Want to manage notifications?</strong> You can easily enable or disable push notifications from the "Settings" tab within the app.</li>
-            <li><strong>Weather widget issues?</strong> Ensure that Location Services are enabled for the app. Go to Settings > Daily Scope > Location and select "While Using the App or Widgets".</li>
-        </ul>
+        <div class="container">
+            <h2>App Support</h2>
+            <p>Thank you for using Daily Scope. We are dedicated to providing you with a seamless experience for tracking breaking news, financial markets, and weather data.</p>
 
-        <div class="contact-box">
-            <h3>Contact Us</h3>
-            <p>If you need further assistance, have suggestions, or want to report a bug, please feel free to reach out:</p>
-            <p>📧 Email: <a href="mailto:gundogannsami@gmail.com">[gundogannsami@gmail.com]</a></p>
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <ul>
+                <li><strong>News feed not refreshing?</strong> Please check your internet connection and try pulling down on the screen to refresh the latest articles.</li>
+                <li><strong>Want to manage notifications?</strong> You can easily enable or disable push notifications from the "Settings" tab within the app.</li>
+                <li><strong>Weather widget issues?</strong> Ensure that Location Services are enabled for the app. Go to Settings > Daily Scope > Location and select "While Using the App or Widgets".</li>
+            </ul>
+
+            <div class="contact-box">
+                <h3>Contact Us</h3>
+                <p>If you need further assistance, have suggestions, or want to report a bug, please feel free to reach out:</p>
+                <p>📧 Email: <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-tr" class="hidden">
+        <header>
+            <h1>Daily Scope</h1>
+            <p class="subtitle">Haber • Piyasalar • Veri</p>
+        </header>
+
+        <div class="container">
+            <h2>Uygulama Desteği</h2>
+            <p>Daily Scope uygulamasını tercih ettiğiniz için teşekkür ederiz. Son dakika haberlerini, finansal piyasaları ve hava durumu verilerini sorunsuz takip etmeniz bizim için önceliktir.</p>
+
+            <h3>Sıkça Sorulan Sorular (SSS)</h3>
+            <ul>
+                <li><strong>Haber akışı yenilenmiyor mu?</strong> Lütfen internet bağlantınızı kontrol edin ve sayfayı aşağı çekerek yenilemeyi deneyin.</li>
+                <li><strong>Bildirim ayarlarını değiştirmek mi istiyorsunuz?</strong> Uygulama içindeki "Ayarlar" sekmesinden bildirimleri kolayca açıp kapatabilirsiniz.</li>
+                <li><strong>Hava durumu widget'ı çalışmıyor mu?</strong> Uygulama için Konum Servislerinin açık olduğundan emin olun. Telefonunuzun Ayarlar > Daily Scope > Konum menüsüne giderek "Uygulamayı veya Widget'ları Kullanırken" seçeneğini işaretleyin.</li>
+            </ul>
+
+            <div class="contact-box">
+                <h3>Bize Ulaşın</h3>
+                <p>Daha fazla yardıma ihtiyacınız varsa, önerileriniz varsa veya bir hata bildirmek istiyorsanız lütfen bize ulaşın:</p>
+                <p>📧 E-Posta: <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a></p>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Daily Scope. All rights reserved.</p>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'tr') {
+                document.getElementById('content-en').classList.add('hidden');
+                document.getElementById('content-tr').classList.remove('hidden');
+                document.getElementById('btn-tr').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+                document.title = "The Brief:Daily - Destek";
+            } else {
+                document.getElementById('content-tr').classList.add('hidden');
+                document.getElementById('content-en').classList.remove('hidden');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-tr').classList.remove('active');
+                document.title = "The Brief:Daily - App Support";
+            }
+        }
+        var userLang = navigator.language || navigator.userLanguage; 
+        if (userLang.startsWith('tr')) {
+            setLanguage('tr');
+        } else {
+            setLanguage('en');
+        }
+    </script>
 
 </body>
 </html>
