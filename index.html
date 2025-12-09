@@ -1,146 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scope: AI Analyst - Support</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .lang-switch {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .lang-btn {
-            background: none;
-            border: 1px solid #007AFF;
-            color: #007AFF;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-left: 5px;
-            transition: all 0.3s ease;
-        }
-        .lang-btn:hover { background-color: #e6f0ff; }
-        .lang-btn.active {
-            background: #007AFF;
-            color: white;
-        }
-        header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #e1e1e1;
-        }
-        h1 { color: #007AFF; margin-bottom: 10px; }
-        p.subtitle { color: #666; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9em; }
-        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-top: 30px; }
-        h2 { margin-top: 0; }
-        .contact-box {
-            background-color: #f0f8ff;
-            border-left: 4px solid #007AFF;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        a { color: #007AFF; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        footer { text-align: center; margin-top: 50px; font-size: 0.8em; color: #666; }
-        .hidden { display: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scope: AI Analyst - Support</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.08);
+      --accent: #22c55e;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 24px 16px 32px;
+      background: radial-gradient(circle at top left, #e0f2fe 0, #f9fafb 50%, #edf2ff 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-shell {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* LANG SWITCH (SAME STRUCTURE, NEW STYLE) */
+
+    .lang-switch {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 14px;
+    }
+
+    .lang-switch-inner {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(148, 163, 184, 0.25);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #4b5563;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.18s ease all;
+      white-space: nowrap;
+    }
+
+    .lang-btn:hover {
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #f9fafb;
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+    }
+
+    /* HERO */
+
+    header {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #eff6ff 0%, #f9fafb 42%, #ecfeff 100%);
+      padding: 26px 22px 20px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      box-shadow: 0 20px 45px rgba(148, 163, 184, 0.45);
+    }
+
+    @media (min-width: 720px) {
+      header {
+        padding: 28px 26px 22px;
+      }
+    }
+
+    .app-logo-pill {
+      flex-shrink: 0;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 0, #bfdbfe 0, #2563eb 45%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #eff6ff;
+      font-size: 1.4rem;
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.55);
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    h1 span.app-name {
+      font-weight: 700;
+    }
+
+    p.subtitle {
+      margin: 0;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      color: #1e293b;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    /* MAIN CONTENT LAYOUT */
+
+    .content-shell {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .content-shell {
+        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+      }
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 22px 20px 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    @media (min-width: 720px) {
+      .container {
+        padding: 26px 24px 28px;
+      }
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    h3 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+      color: #111827;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 6px 0 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 0.94rem;
+      color: #374151;
+    }
+
+    strong {
+      color: #111827;
+    }
+
+    /* FAQ BLOCKS */
+
+    .faq-list {
+      margin-top: 8px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-md);
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 10px 12px;
+    }
+
+    .faq-item-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #111827;
+    }
+
+    .faq-badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .faq-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    /* CONTACT BOX */
+
+    .contact-box {
+      background: linear-gradient(135deg, #eff6ff, #ecfeff);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid rgba(191, 219, 254, 0.9);
+      border-right: 1px solid rgba(186, 230, 253, 0.9);
+      border-bottom: 1px solid rgba(191, 219, 254, 0.9);
+      padding: 18px 16px 16px 18px;
+      margin: 20px 0 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent);
+      opacity: 0.7;
+    }
+
+    .contact-box h3 {
+      margin-top: 0;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #eff6ff;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+      flex-shrink: 0;
+    }
+
+    a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .sidebar {
+        display: block;
+      }
+    }
+
+    .sidebar-card {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 18px 18px 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+      position: sticky;
+      top: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-list li {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .sidebar-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 26px;
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: row;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="lang-switch">
-        <button class="lang-btn" id="btn-tr" onclick="setLanguage('tr')">TR</button>
-        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
-    </div>
+  <div class="page-shell">
+    <!-- Language Switch (structure kept, styled differently) -->
+    <div class="lang-switch">
+      <div class="lang-switch-inner">
+        <button class="lang-btn" id="btn-tr" onclick="setLanguage('tr')">TR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+      </div>
+    </div>
 
-    <div id="content-en">
-        <header>
-            <h1>Scope: AI Analyst</h1>
-            <p class="subtitle">AI Analysis • Markets • Weather</p>
-        </header>
+    <!-- EN CONTENT -->
+    <div id="content-en">
+      <header>
+        <div class="app-logo-pill">
+          <span>AI</span>
+        </div>
+        <div class="hero-text">
+          <h1>
+            <span class="app-name">Scope: AI Analyst</span>
+            <span>Support</span>
+          </h1>
+          <p class="subtitle">AI Analysis • Markets • Weather</p>
+          <div class="hero-tags">
+            <div class="hero-tag">
+              <span class="hero-tag-dot"></span>
+              <span>Help Center</span>
+            </div>
+            <div class="hero-tag">
+              <span>Response time: usually under 24 hours</span>
+            </div>
+          </div>
+        </div>
+      </header>
 
-        <div class="container">
-            <h2>App Support</h2>
-            <p>Thank you for using Scope: AI Analyst. We are dedicated to providing you with a seamless experience for tracking AI-driven financial analysis, real-time market data, and hyper-local weather information.</p>
+      <div class="content-shell">
+        <div class="container">
+          <h2>App Support</h2>
+          <p>
+            Thank you for using <strong>Scope: AI Analyst</strong>. We are dedicated to providing you with
+            a seamless experience for tracking AI-driven financial analysis, real-time market data,
+            and hyper-local weather information.
+          </p>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
-            <ul>
-                <li><strong>AI analysis not generating?</strong> If the analysis is stuck or returns an error, please check your network connection and try again. AI services may be temporarily unavailable due to API limits.</li>
-                <li><strong>Want to manage notifications?</strong> You can easily enable or disable push notifications from the "Settings" tab within the app.</li>
-                <li><strong>Weather widget issues?</strong> Ensure that Location Services are enabled for the app. Go to Settings > Scope: AI Analyst > Location and select "While Using the App or Widgets".</li>
-            </ul>
+          <h3>Frequently Asked Questions (FAQ)</h3>
 
-            <div class="contact-box">
-                <h3>Contact Us</h3>
-                <p>If you need further assistance, have suggestions, or want to report a bug, please feel free to reach out:</p>
-                <p>📧 Email: <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a></p>
-            </div>
-        </div>
-    </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">AI</span>
+                <span>AI analysis not generating?</span>
+              </div>
+              <p>
+                If the analysis is stuck or returns an error, please check your network connection
+                and try again. AI services may be temporarily unavailable due to API limits.
+              </p>
+            </div>
 
-    <div id="content-tr" class="hidden">
-        <header>
-            <h1>Scope: AI Analyst</h1>
-            <p class="subtitle">Yapay Zeka Analiz • Piyasalar • Hava Durumu</p>
-        </header>
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">🔔</span>
+                <span>Want to manage notifications?</span>
+              </div>
+              <p>
+                You can easily enable or disable push notifications from the <strong>Settings</strong>
+                tab within the app.
+              </p>
+            </div>
 
-        <div class="container">
-            <h2>Uygulama Desteği</h2>
-            <p>Scope: AI Analyst uygulamasını tercih ettiğiniz için teşekkür ederiz. Yapay zeka destekli analizleri, finansal piyasaları ve hava durumu verilerini sorunsuz takip etmeniz bizim için önceliktir.</p>
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">☁️</span>
+                <span>Weather widget issues?</span>
+              </div>
+              <p>
+                Ensure that Location Services are enabled for the app. Go to
+                <strong>Settings &gt; Scope: AI Analyst &gt; Location</strong> and select
+                <strong>"While Using the App or Widgets"</strong>.
+              </p>
+            </div>
+          </div>
 
-            <h3>Sıkça Sorulan Sorular (SSS)</h3>
-            <ul>
-                <li><strong>Yapay zeka analizi yüklenmiyor mu?</strong> Analiz takılırsa veya hata verirse, lütfen ağ bağlantınızı kontrol edin ve tekrar deneyin. Yapay zeka servisleri API limitleri nedeniyle geçici olarak kullanılamıyor olabilir.</li>
-                <li><strong>Bildirim ayarlarını değiştirmek mi istiyorsunuz?</strong> Uygulama içindeki "Ayarlar" sekmesinden bildirimleri kolayca açıp kapatabilirsiniz.</li>
-                <li><strong>Hava durumu widget'ı çalışmıyor mu?</strong> Uygulama için Konum Servislerinin açık olduğundan emin olun. Telefonunuzun Ayarlar > Scope: AI Analyst > Konum menüsüne giderek "Uygulamayı veya Widget'ları Kullanırken" seçeneğini işaretleyin.</li>
-            </ul>
+          <div class="contact-box">
+            <h3>
+              <span class="contact-icon">✉️</span>
+              <span>Contact Us</span>
+            </h3>
+            <p>
+              If you need further assistance, have suggestions, or want to report a bug,
+              please feel free to reach out:
+            </p>
+            <p>
+              📧 Email:
+              <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a>
+            </p>
+          </div>
+        </div>
 
-            <div class="contact-box">
-                <h3>Bize Ulaşın</h3>
-                <p>Daha fazla yardıma ihtiyacınız varsa, önerileriniz varsa veya bir hata bildirmek istiyorsanız lütfen bize ulaşın:</p>
-                <p>📧 E-Posta: <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a></p>
-            </div>
-        </div>
-    </div>
+        <!-- Sidebar (quick tips) -->
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">Quick Tips</div>
+            <ul class="sidebar-list">
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Check your internet connection first.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Update the app to the latest version.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Verify location permissions for weather features.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Restart the app if AI analysis is stuck.</span>
+              </li>
+            </ul>
+            <div class="sidebar-note">
+              Still stuck? Drop us a short message describing your device and the issue you're seeing.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 Scope: AI Analyst. All rights reserved.</p>
-    </footer>
+    <!-- TR CONTENT -->
+    <div id="content-tr" class="hidden">
+      <header>
+        <div class="app-logo-pill">
+          <span>AI</span>
+        </div>
+        <div class="hero-text">
+          <h1>
+            <span class="app-name">Scope: AI Analyst</span>
+            <span>Destek</span>
+          </h1>
+          <p class="subtitle">Yapay Zeka Analiz • Piyasalar • Hava Durumu</p>
+          <div class="hero-tags">
+            <div class="hero-tag">
+              <span class="hero-tag-dot"></span>
+              <span>Yardım Merkezi</span>
+            </div>
+            <div class="hero-tag">
+              <span>Yanıt süresi: genellikle 24 saatin altında</span>
+            </div>
+          </div>
+        </div>
+      </header>
 
-    <script>
-        function setLanguage(lang) {
-            if (lang === 'tr') {
-                document.getElementById('content-en').classList.add('hidden');
-                document.getElementById('content-tr').classList.remove('hidden');
-                document.getElementById('btn-tr').classList.add('active');
-                document.getElementById('btn-en').classList.remove('active');
-                document.title = "Scope: AI Analyst - Destek";
-            } else {
-                document.getElementById('content-tr').classList.add('hidden');
-                document.getElementById('content-en').classList.remove('hidden');
-                document.getElementById('btn-en').classList.add('active');
-                document.getElementById('btn-tr').classList.remove('active');
-                document.title = "Scope: AI Analyst - App Support";
-            }
-        }
-        var userLang = navigator.language || navigator.userLanguage; 
-        if (userLang.startsWith('tr')) {
-            setLanguage('tr');
-        } else {
-            setLanguage('en');
-        }
-    </script>
+      <div class="content-shell">
+        <div class="container">
+          <h2>Uygulama Desteği</h2>
+          <p>
+            <strong>Scope: AI Analyst</strong> uygulamasını tercih ettiğiniz için teşekkür ederiz.
+            Yapay zeka destekli analizleri, finansal piyasaları ve hava durumu verilerini
+            sorunsuz takip etmeniz bizim için önceliktir.
+          </p>
 
+          <h3>Sıkça Sorulan Sorular (SSS)</h3>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">AI</span>
+                <span>Yapay zeka analizi yüklenmiyor mu?</span>
+              </div>
+              <p>
+                Analiz takılırsa veya hata verirse, lütfen ağ bağlantınızı kontrol edin ve tekrar deneyin.
+                Yapay zeka servisleri API limitleri nedeniyle geçici olarak kullanılamıyor olabilir.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">🔔</span>
+                <span>Bildirim ayarlarını değiştirmek mi istiyorsunuz?</span>
+              </div>
+              <p>
+                Uygulama içindeki <strong>"Ayarlar"</strong> sekmesinden bildirimleri
+                kolayca açıp kapatabilirsiniz.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-item-title">
+                <span class="faq-badge">☁️</span>
+                <span>Hava durumu widget'ı çalışmıyor mu?</span>
+              </div>
+              <p>
+                Uygulama için Konum Servislerinin açık olduğundan emin olun. Telefonunuzun
+                <strong>Ayarlar &gt; Scope: AI Analyst &gt; Konum</strong> menüsüne giderek
+                <strong>"Uygulamayı veya Widget'ları Kullanırken"</strong> seçeneğini işaretleyin.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-box">
+            <h3>
+              <span class="contact-icon">✉️</span>
+              <span>Bize Ulaşın</span>
+            </h3>
+            <p>
+              Daha fazla yardıma ihtiyacınız varsa, önerileriniz varsa veya bir hata bildirmek
+              istiyorsanız lütfen bize ulaşın:
+            </p>
+            <p>
+              📧 E-Posta:
+              <a href="mailto:gundogannsami@gmail.com">gundogannsami@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Sidebar TR -->
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">Hızlı İpuçları</div>
+            <ul class="sidebar-list">
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Önce internet bağlantınızı kontrol edin.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Uygulamanın en güncel sürümünü kullandığınızdan emin olun.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Hava durumu için konum izinlerini doğrulayın.</span>
+              </li>
+              <li>
+                <span class="sidebar-bullet"></span>
+                <span>Yapay zeka analizi takılırsa uygulamayı yeniden başlatın.</span>
+              </li>
+            </ul>
+            <div class="sidebar-note">
+              Hâlâ sorun yaşıyorsanız, lütfen cihazınızı ve gördüğünüz hatayı kısaca açıklayan bir e-posta gönderin.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Scope: AI Analyst. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'tr') {
+        document.getElementById('content-en').classList.add('hidden');
+        document.getElementById('content-tr').classList.remove('hidden');
+        document.getElementById('btn-tr').classList.add('active');
+        document.getElementById('btn-en').classList.remove('active');
+        document.title = "Scope: AI Analyst - Destek";
+      } else {
+        document.getElementById('content-tr').classList.add('hidden');
+        document.getElementById('content-en').classList.remove('hidden');
+        document.getElementById('btn-en').classList.add('active');
+        document.getElementById('btn-tr').classList.remove('active');
+        document.title = "Scope: AI Analyst - App Support";
+      }
+    }
+
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang && userLang.toLowerCase().startsWith('tr')) {
+      setLanguage('tr');
+    } else {
+      setLanguage('en');
+    }
+  </script>
 </body>
 </html>
